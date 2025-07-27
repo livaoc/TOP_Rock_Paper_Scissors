@@ -1,8 +1,8 @@
 function getComputerChoice(max) {
-    let computer_got_choice = Math.floor(Math.random() * max)
-    if (computer_got_choice == 0) {
+    let computerChoice = Math.floor(Math.random() * max)
+    if (computerChoice == 0) {
         return "rock";
-    } else if (computer_got_choice == 1) {
+    } else if (computerChoice == 1) {
         return "paper";
     } else {
         return "scissors";
@@ -10,14 +10,12 @@ function getComputerChoice(max) {
 }
 
 function getHumanChoice() {
-    let while_condition = true;
-    while (while_condition) {
-    let user_choice = prompt("Choose between rock, paper, scissors: ");
-    user_choice = user_choice.toLowerCase();
-        if (user_choice == "rock" || user_choice == "paper" || user_choice == "scissors") {
-            console.log("You chose " + user_choice);
-            while_condition = false;
-            return user_choice;
+    while (true) {
+    let userChoice = prompt("Choose between rock, paper, scissors: ");
+    userChoice = userChoice.toLowerCase();
+        if (userChoice == "rock" || userChoice == "paper" || userChoice == "scissors") {
+            console.log("You chose " + userChoice);
+            return userChoice;
         } else {
             console.log("Invalid input. Please try again.");
         }
@@ -28,10 +26,19 @@ getHumanChoice();
 console.log("Computer input: " + getComputerChoice(3));
 
 
-let computer_score = 0;
-let human_score = 0;
+let computerScore = 0;
+let humanScore = 0;
 
+function playRound(computerChoice, userChoice) {
 
+    if (computerChoice == "rock" && userChoice == "scissors"|| computerChoice == "paper" && userChoice == "rock"|| computerChoice == "scissors" && userChoice == "paper") {
+        computerScore = computerScore + 1;
+    } else if (computerChoice == userChoice) {
+        console.log("Its a draw!");
+    } else {
+        humanScore = humanScore + 1;
+    }
+}
 
 
 /* computer needs to return a random string between rock/paper/scissors
