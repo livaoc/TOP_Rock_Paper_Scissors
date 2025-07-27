@@ -1,8 +1,12 @@
+let computerScore = 0;
+let humanScore = 0;
+let drawScore = 0;
+
 function getComputerChoice(max) {
     let computerChoice = Math.floor(Math.random() * max)
-    if (computerChoice == 0) {
+    if (computerChoice === 0) {
         return "rock";
-    } else if (computerChoice == 1) {
+    } else if (computerChoice === 1) {
         return "paper";
     } else {
         return "scissors";
@@ -13,7 +17,7 @@ function getHumanChoice() {
     while (true) {
     let userChoice = prompt("Choose between rock, paper, scissors: ");
     userChoice = userChoice.toLowerCase();
-        if (userChoice == "rock" || userChoice == "paper" || userChoice == "scissors") {
+        if (userChoice === "rock" || userChoice === "paper" || userChoice === "scissors") {
             console.log("You chose " + userChoice);
             return userChoice;
         } else {
@@ -22,18 +26,12 @@ function getHumanChoice() {
     }
 }
 
-getHumanChoice();
-console.log("Computer input: " + getComputerChoice(3));
-
-
-let computerScore = 0;
-let humanScore = 0;
-
 function playRound(computerChoice, userChoice) {
-        if (computerChoice == "rock" && userChoice == "scissors"|| computerChoice == "paper" && userChoice == "rock"|| computerChoice == "scissors" && userChoice == "paper") {
+        if ((computerChoice === "rock" && userChoice === "scissors") || (computerChoice === "paper" && userChoice === "rock") || (computerChoice === "scissors" && userChoice === "paper")) {
             computerScore = computerScore + 1;
             return console.log("You lost this round!");
-        } else if (computerChoice == userChoice) {
+        } else if (computerChoice === userChoice) {
+            drawScore = drawScore + 1;
             return console.log("Its a draw!");
         } else {
             humanScore = humanScore + 1;  
@@ -41,24 +39,28 @@ function playRound(computerChoice, userChoice) {
         }
     }
 
-playRound();
-
 function continuePlaying() {
     let continueChoice = prompt("Do you wish to continue? yes/no: ");
         while(true) {
-            if (continueChoice.toLowerCase() == "yes") {
-                console.log("The game will keep going!");
-                getHumanChoice();
-                console.log("Computer input: " + getComputerChoice(3));
-                playRound();
+            if (continueChoice.toLowerCase() === "yes") {
+                let userChoice = getHumanChoice();
+                let computerChoice = getComputerChoice(3);
+                console.log("Computer input: " + computerChoice);
+                playRound(computerChoice, userChoice);
                 break
             } else {
-                return console.log("The game ended! \nYour score: " + humanScore + " points. \nComputer score: " + computerScore + " points.");
+                return console.log("The game ended! \nYour score: " + humanScore + " points. \nComputer score: " + computerScore + " points.\nDraws: " + drawScore + ".");
             }
         }
 
         continuePlaying();
 }
+
+let userChoice = getHumanChoice();
+let computerChoice = getComputerChoice(3);
+console.log("Computer input: " + computerChoice);
+playRound(computerChoice, userChoice);
+
 
 continuePlaying();
 
