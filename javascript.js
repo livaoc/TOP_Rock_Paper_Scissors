@@ -30,15 +30,37 @@ let computerScore = 0;
 let humanScore = 0;
 
 function playRound(computerChoice, userChoice) {
-
-    if (computerChoice == "rock" && userChoice == "scissors"|| computerChoice == "paper" && userChoice == "rock"|| computerChoice == "scissors" && userChoice == "paper") {
-        computerScore = computerScore + 1;
-    } else if (computerChoice == userChoice) {
-        console.log("Its a draw!");
-    } else {
-        humanScore = humanScore + 1;
+        if (computerChoice == "rock" && userChoice == "scissors"|| computerChoice == "paper" && userChoice == "rock"|| computerChoice == "scissors" && userChoice == "paper") {
+            computerScore = computerScore + 1;
+            return console.log("You lost this round!");
+        } else if (computerChoice == userChoice) {
+            return console.log("Its a draw!");
+        } else {
+            humanScore = humanScore + 1;  
+            return console.log("You won this round!");   
+        }
     }
+
+playRound();
+
+function continuePlaying() {
+    let continueChoice = prompt("Do you wish to continue? yes/no: ");
+        while(true) {
+            if (continueChoice.toLowerCase() == "yes") {
+                console.log("The game will keep going!");
+                getHumanChoice();
+                console.log("Computer input: " + getComputerChoice(3));
+                playRound();
+                break
+            } else {
+                return console.log("The game ended! \nYour score: " + humanScore + " points. \nComputer score: " + computerScore + " points.");
+            }
+        }
+
+        continuePlaying();
 }
+
+continuePlaying();
 
 
 /* computer needs to return a random string between rock/paper/scissors
