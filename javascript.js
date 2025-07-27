@@ -24,8 +24,14 @@ function getHumanChoice() {
     }
 }
 
-console.log("Computer input: " + getComputerChoice(3));
 getHumanChoice();
+console.log("Computer input: " + getComputerChoice(3));
+
+
+let computer_score = 0;
+let human_score = 0;
+
+
 
 
 /* computer needs to return a random string between rock/paper/scissors
