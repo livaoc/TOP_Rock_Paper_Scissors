@@ -5,7 +5,7 @@
 //         checking the text content for the button  
 //         and returning it as the human choice
 //
-let userChoice;
+let humanChoice;
 let computerChoice;
 let computerScore = 0;
 let humanScore = 0;
@@ -23,11 +23,13 @@ function getComputerChoice(max) {
     }
 }
 
-function playRound(computerChoice, userChoice) {
-        if ((computerChoice === "rock" && userChoice === "scissors") || (computerChoice === "paper" && userChoice === "rock") || (computerChoice === "scissors" && userChoice === "paper")) {
+function playRound(computerChoice, humanChoice) {
+        if ((computerChoice === "rock" && humanChoice === "scissors") || 
+            (computerChoice === "paper" && humanChoice === "rock") || 
+            (computerChoice === "scissors" && humanChoice === "paper")) {
             computerScore = computerScore + 1;
             return console.log("You lost this round!");
-        } else if (computerChoice === userChoice) {
+        } else if (computerChoice === humanChoice) {
             drawScore = drawScore + 1;
             return console.log("Its a draw!");
         } else {
@@ -42,14 +44,17 @@ console.log("Computer input: " + computerChoice);
 buttons.forEach((button) => {
     button.addEventListener("click", () => {
         let buttonText = button.textContent;
-        userChoice = buttonText;
+        humanChoice = buttonText;
 
         computerChoice = getComputerChoice(3);
         
-        playRound(computerChoice, userChoice);
+        playRound(computerChoice, humanChoice);
 
-        console.log("Your choice: " + userChoice);
-        console.log("Computer choice: " + computerChoice);
+        console.log("\nYour choice: " + humanChoice +
+                    "\nComputer choice: " + computerChoice +
+                    "\n\nYour score: " + humanScore +
+                    "\nComputer score: " + computerScore +
+                    "\nDraws: " + drawScore);
     });
 
 });
