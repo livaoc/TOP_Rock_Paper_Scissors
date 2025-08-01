@@ -1,6 +1,16 @@
+// 3 buttons: rock, paper, scissors
+// player clicks one of the buttons
+// getHumanChoice acts
+//      -> one option for this is to make it act by
+//         checking the text content for the button  
+//         and returning it as the human choice
+//
+let userChoice;
+let computerChoice;
 let computerScore = 0;
 let humanScore = 0;
 let drawScore = 0;
+const buttons = document.querySelectorAll("button");
 
 function getComputerChoice(max) {
     let computerChoice = Math.floor(Math.random() * max)
@@ -10,19 +20,6 @@ function getComputerChoice(max) {
         return "paper";
     } else {
         return "scissors";
-    }
-}
-
-function getHumanChoice() {
-    while (true) {
-    let userChoice = prompt("Choose between rock, paper, scissors: ");
-    userChoice = userChoice.toLowerCase();
-        if (userChoice === "rock" || userChoice === "paper" || userChoice === "scissors") {
-            console.log("You chose " + userChoice);
-            return userChoice;
-        } else {
-            console.log("Invalid input. Please try again.");
-        }
     }
 }
 
@@ -37,32 +34,25 @@ function playRound(computerChoice, userChoice) {
             humanScore = humanScore + 1;  
             return console.log("You won this round!");   
         }
-    }
-
-function continuePlaying() {
-    let continueChoice = prompt("Do you wish to continue? yes/no: ");
-        while(true) {
-            if (continueChoice.toLowerCase() === "yes") {
-                let userChoice = getHumanChoice();
-                let computerChoice = getComputerChoice(3);
-                console.log("Computer input: " + computerChoice);
-                playRound(computerChoice, userChoice);
-                break
-            } else {
-                return console.log("The game ended! \nYour score: " + humanScore + " points. \nComputer score: " + computerScore + " points.\nDraws: " + drawScore + ".");
-            }
-        }
-
-        continuePlaying();
 }
 
-let userChoice = getHumanChoice();
-let computerChoice = getComputerChoice(3);
+
 console.log("Computer input: " + computerChoice);
-playRound(computerChoice, userChoice);
 
+buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+        let buttonText = button.textContent;
+        userChoice = buttonText;
 
-continuePlaying();
+        computerChoice = getComputerChoice(3);
+        
+        playRound(computerChoice, userChoice);
+
+        console.log("Your choice: " + userChoice);
+        console.log("Computer choice: " + computerChoice);
+    });
+
+});
 
 
 /* computer needs to return a random string between rock/paper/scissors
