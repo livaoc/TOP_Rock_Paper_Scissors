@@ -1,4 +1,4 @@
-// 3 buttons: rock, paper, scissors
+// 3 buttons: rock, paper, scissor
 // player clicks one of the buttons
 // getHumanChoice acts
 //      -> one option for this is to make it act by
@@ -27,14 +27,14 @@ function getComputerChoice(max) {
     } else if (computerChoice === 1) {
         return "paper";
     } else {
-        return "scissors";
+        return "scissor";
     }
 }
 
 function playRound(computerChoice, humanChoice) {
-        if ((computerChoice === "rock" && humanChoice === "scissors") || 
+        if ((computerChoice === "rock" && humanChoice === "scissor") || 
             (computerChoice === "paper" && humanChoice === "rock") || 
-            (computerChoice === "scissors" && humanChoice === "paper")) {
+            (computerChoice === "scissor" && humanChoice === "paper")) {
             computerScore = computerScore + 1;
             won = "no";
             return console.log("You lost this round!");
