@@ -58,18 +58,3 @@ buttons.forEach((button) => {
     });
 
 });
-
-
-/* computer needs to return a random string between rock/paper/scissors
-i can use Math.random() to return a random number (1 > number >= 0)
-and code it to return a random number from 1 to 3 (0 to 2) using Math.floor()
-and converting to Int
-
-then, I'm able to associate each number to one of the 3 strings (rock/paper/scissors)
-*/
-
-/* human choice logic:
-use prompt to get a user string input
-use a system like while on python to keep the user on a loop until it writes one of the option
-use .toLowerCase() to ignore capitalization of the user input
-*/
